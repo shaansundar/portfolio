@@ -1,0 +1,20 @@
+<div
+    class="snap-center w-screen h-screen max-h-screen ease-in-out mb-5 text-white p-5 flex flex-col items-start justify-center">
+    <h1 class="text-3xl">📞 Contact Me!</h1>
+    <br>
+    <h2 class="text-xs mb-5">TRIGGER WARNING: This is a @mailto form. Feel free to use social medias instead 😅</h2>
+    <div class="flex items-start justify-start mb-10">
+        <a href="https://t.me/notthatsundar"><img src="../../assets/svg/telegram.svg" class=" mr-2 "alt=""></a>
+        <a href="https://linkedin.com/in/notthatsundar"><img src="../../assets/svg/linkedin.svg" class=" mx-2 "alt=""></a>
+        <a href="https://github.com/shaansundar"><img src="../../assets/svg/github-icon.svg" class=" mx-2 "alt=""></a>
+    </div>
+    <form #contactForm="ngForm">
+        <h3 class="text-xs mb-1 p-0">Subject</h3>
+        <input type="text" [(ngModel)]="contactModel.subject" (keyup)="onChange()" name="subject"
+            class="border-4 mb-4 border-white px-2 bg-transparent h-12 w-full">
+        <h3 class="text-xs mb-1 p-0">Message</h3>
+        <textarea type="text" [(ngModel)]="contactModel.message" (keyup)="onChange()" name="message"
+            class="border-4 mb-4 border-white px-2 bg-transparent h-36 w-full"></textarea>
+        <button (click)="onClick()" type="submit" class="h-12 w-36 bg-white text-center text-PrimaryBlue">Submit!</button>
+    </form>
+</div>

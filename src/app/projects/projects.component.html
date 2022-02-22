@@ -1,0 +1,35 @@
+<div
+    class="snap-center w-screen h-screen max-h-screen ease-in-out text-white flex flex-col items-center justify-center">
+    <div class="flex flex-col items-center justify-start">
+        <h1 class="text-2xl mb-1">Mine My Works & Experience 🕹</h1>
+        <h1 class="text-[14px]">Enter Nonce until all blocks unwrap</h1>
+        <h1 class="text-[10px] mb-5">(Click on unwrapped block to go to the project)</h1>
+        <input type="text" [value]="value" (keyup)="onChange($event)" class="border-4 mb-4 border-white text-center bg-transparent h-12 w-56">
+        <div class="grid grid-cols-2 w-full h-[400px] auto-rows-max">
+            <div *ngFor="let item of projects, let i = index">
+                <div class="flex items-center min-w-full h-full justify-center animateClass">
+                    <div *ngIf="item.isOpen" class="h-[70px] w-[70px] m-[5%] animateClass border-4 border-white bg-transparent">
+                        <a href={{item.link}} >
+                            <img src={{item.img}} class="w-full h-full" *ngIf="item.isOpen" alt="">
+                        </a>
+                    </div>
+                    <div *ngIf="!item.isOpen" class="h-5 w-5 m-[20%] animateClass border-4 border-white bg-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div *ngFor="let job of projects, let i = index" (click)="onClick(i)" [ngClass]="{'w-56 ease-in-out bg-white text-PrimaryBlue': job.isOpen}" class="border-4 ease-in-out lg:hover:bg-white text-white border-white w-28 h-28 m-2">
+        <div *ngIf="!job.isOpen" class="flex items-center justify-center h-full w-full" >
+            <img src={{job.img}} alt="">
+        </div>
+        <div *ngIf="job.isOpen" class="flex items-center justify-start h-full w-full" >
+            <div class="flex flex-col items-start justify-center">
+                <h1 class="text-lg">{{job.name}}</h1>
+                <h2 class="text-[8px]">{{job.desc}}</h2>
+                <h2 class="text-sm mt-1">Role: {{job.work}}</h2>
+                <a href={{job.link}} class="text-[12px] mt-1">🔗 Link</a>
+            </div>
+        </div>
+    </div> -->
+</div>
