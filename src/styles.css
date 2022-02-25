@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body{
-    background-color: #1D90FF;
+    background-color: RGB(14, 109, 252);
 }
 ::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
