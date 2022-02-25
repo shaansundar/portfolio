@@ -5,7 +5,7 @@
         <h1 class="text-[14px]">Enter Nonce until all blocks unwrap</h1>
         <h1 class="text-[10px] mb-5">(Click on unwrapped block to go to the project)</h1>
         <input type="text" [value]="value" (keyup)="onChange($event)" class="border-4 mb-4 border-white text-center bg-transparent h-12 w-56">
-        <div class="grid grid-cols-2 w-full h-[400px] auto-rows-max">
+        <div class="grid grid-cols-3 w-full h-[400px] auto-rows-max">
             <div *ngFor="let item of projects, let i = index">
                 <div class="flex items-center min-w-full h-full justify-center animateClass">
                     <div *ngIf="item.isOpen" class="h-[70px] w-[70px] m-[5%] animateClass border-4 border-white bg-transparent">

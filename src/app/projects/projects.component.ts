@@ -62,6 +62,18 @@ export class ProjectsComponent implements OnInit {
       length: false,
     },
     {
+      img: '../../assets/svg/campk12.svg',
+      link: 'https://campk12.com/',
+      isOpen: false,
+      length: false,
+    },
+    {
+      img: '../../assets/svg/photomath.svg',
+      link: 'https://photomath.com/en/',
+      isOpen: false,
+      length: false,
+    },
+    {
       img: '../../assets/svg/github.svg',
       link: 'https://github.com/shaansundar',
       isOpen: false,
