@@ -44,6 +44,12 @@ export class ProjectsComponent implements OnInit {
       length: false,
     },
     {
+      img: '../../assets/svg/genki-logo.svg',
+      link: 'https://genki.com',
+      isOpen: false,
+      length: false,
+    },
+    {
       img: '../../assets/svg/diceinu.svg',
       link: 'https://diceinu.com',
       isOpen: false,
@@ -73,12 +79,12 @@ export class ProjectsComponent implements OnInit {
       isOpen: false,
       length: false,
     },
-    {
-      img: '../../assets/svg/github.svg',
-      link: 'https://github.com/shaansundar',
-      isOpen: false,
-      length: false,
-    },
+    // {
+    //   img: '../../assets/svg/github.svg',
+    //   link: 'https://github.com/shaansundar',
+    //   isOpen: false,
+    //   length: false,
+    // },
   ];
 
   ngOnInit(): void {
