@@ -1,35 +1,123 @@
 <div
-    class="snap-center w-screen h-screen max-h-screen ease-in-out text-white flex flex-col items-center justify-center">
-    <div class="flex flex-col items-center justify-start">
-        <h1 class="text-2xl md:text-3xl lg:text-4xl mb-1">Mine My Works & Experience 🕹</h1>
-        <h1 class="text-[14px]">Enter Nonce until all blocks unwrap</h1>
-        <h1 class="text-[10px] mb-5">(Click on unwrapped block to go to the project)</h1>
-        <input type="text" [value]="value" (keyup)="onChange($event)" class="border-4 mb-4 border-white text-center bg-transparent h-12 w-56">
-        <div class="grid grid-cols-3 w-full h-[400px] auto-rows-max">
-            <div *ngFor="let item of projects, let i = index">
-                <div class="flex items-center min-w-full h-full justify-center animateClass">
-                    <div *ngIf="item.isOpen" class="h-[70px] w-[70px] m-[5%] animateClass border-4 border-white bg-transparent">
-                        <a href={{item.link}} >
-                            <img src={{item.img}} class="w-full h-full" *ngIf="item.isOpen" alt="">
-                        </a>
+    class="snap-center md:p-10 w-screen h-screen md:max-h-screen ease-in-out text-white flex flex-col items-center justify-start md:justify-center">
+    <h1 class="text-2xl md:text-3xl lg:text-4xl mt-4 mb-2">Mine My Works & Experience 🕹</h1>
+    <!-- <h1 class="text-[12px] w-full text-center">And win a 1/100 <b class="text-base">ERR404</b> NFT for <b>Free!</b> 🎉</h1> -->
+    <div class="hidden md:flex flex-row items-center justify-between w-full h-full ">
+        <div class="flex flex-col w-[50%] h-2/5 md:h-[80%] items-center border-4 border-white justify-center">
+            <input type="text" [value]="value" (keyup)="onChange($event)"
+                class="border-4 my-4 border-white text-center bg-transparent h-12 w-3/4">
+            <div class="grid grid-cols-3 w-full h-full md:h-[400px] auto-rows-max">
+                <div *ngFor="let item of projects, let i = index">
+                    <div class="flex items-center min-w-full h-full justify-center animateClass">
+                        <div *ngIf="item.isOpen"
+                            class="h-[70px] w-[70px] m-[5%] animateClass border-0 md:border-4 border-white bg-transparent">
+                            <img src={{item.img}} (mouseover)="onClick(i)" (mouseout)="onClick(-1)" class="w-full cursor-pointer h-full"
+                                *ngIf="item.isOpen" alt="">
+                        </div>
+                        <div *ngIf="!item.isOpen" class="h-5 w-5 m-[20%] animateClass border-4 border-white bg-white">
+                        </div>
                     </div>
-                    <div *ngIf="!item.isOpen" class="h-5 w-5 m-[20%] animateClass border-4 border-white bg-white">
+                </div>
+
+            </div>
+            <div class="flex-col flex items-center justify-evenly w-full mb-4">
+                <button
+                    class="text-base hover:-translate-y-1 transition-all border-white border-4 h-10 w-3/4 mb-4">Connect
+                    Wallet</button>
+                <button
+                    [ngClass]="!claimStatus ? 'bg-gray-300 hover:translate-y-0 cursor-not-allowed text-gray-500': 'hover:-translate-y-1 bg-white cursor-pointer text-PrimaryBlue'"
+                    class="text-base transition-all text-PrimaryBlue h-10 w-3/4 mb-2">Claim Reward
+                    🎉</button>
+            </div>
+        </div>
+        <div
+            class="flex flex-col w-full h-3/5 md:h-[80%] items-center border-4 border-x-0 md:border-l-0 md:border-r-4 border-white justify-center">
+            <div *ngIf="showData == -1" class="text-center">
+                <h1 class="font-bold text-xl">Mine All blocks at once by entering random nonce to claim a Reward!</h1>
+                <h1 class="italic text-sm font-light">(Hover on a mined block to learn more about it :D)</h1>
+            </div>
+            <!-- <h1 *ngIf="showData >= 0" class="italic text-lg font-light">(Showing {{this.showData}})</h1> -->
+            <div *ngIf="showData >= 0" class="w-full h-full p-8 flex flex-nowrap flex-col items-start justify-start">
+                <img src={{projects[showData].img}} class="w-12 h-12 mb-4 cursor-pointer" alt="">
+                <a [href]="projects[showData].link">
+                    <h1 class="text-2xl underline mb-2">{{projects[showData].name}}</h1>
+                </a>
+                <p class="mb-8">{{projects[showData].desc}}</p>
+                <p class="font-semibold text-sm mb-2">Work: {{projects[showData].work}}</p>
+                <br>
+                <h1 class="inline-block font-semibold">Field: </h1>
+                <!-- <div class="inline-block" *ngFor="let item of projects[showData].fields"> -->
+                <p class="text-xs">{{projects[showData].fields}}</p>
+                <!-- </div> -->
+                <br>
+                <h1 class="inline-block font-semibold">Tech Used/Learnt: </h1>
+                <div class="flex items-center justify-center mt-2">
+                    <div class="w-auto px-2 mr-2 h-5 text-PrimaryBlue text-sm bg-white rounded-xl"
+                        *ngFor="let item of projects[showData].tech">
+                        {{item}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div *ngFor="let job of projects, let i = index" (click)="onClick(i)" [ngClass]="{'w-56 ease-in-out bg-white text-PrimaryBlue': job.isOpen}" class="border-4 ease-in-out lg:hover:bg-white text-white border-white w-28 h-28 m-2">
-        <div *ngIf="!job.isOpen" class="flex items-center justify-center h-full w-full" >
-            <img src={{job.img}} alt="">
-        </div>
-        <div *ngIf="job.isOpen" class="flex items-center justify-start h-full w-full" >
-            <div class="flex flex-col items-start justify-center">
-                <h1 class="text-lg">{{job.name}}</h1>
-                <h2 class="text-[8px]">{{job.desc}}</h2>
-                <h2 class="text-sm mt-1">Role: {{job.work}}</h2>
-                <a href={{job.link}} class="text-[12px] mt-1">🔗 Link</a>
+    <div class="flex md:hidden flex-col items-center justify-center h-full">
+        <div class="w-[80vw] border-4 border-white">
+            <div class="w-full my-4 flex items-center justify-center">
+                <input type="text" [value]="value" (keyup)="onChange($event)"
+                    class="border-4 border-white text-center bg-transparent h-12 w-3/4">
+            </div>
+            <div class="grid my-2 grid-cols-3 w-full h-3/5">
+                <div *ngFor="let item of projects, let i = index">
+                    <div class="flex items-center min-w-full h-auto justify-center animateClass">
+                        <div *ngIf="item.isOpen"
+                            class="h-[45px] w-[45px] m-[5%] animateClass border-0 md:border-4 border-white bg-transparent">
+                            <img src={{item.img}} (click)="onClickMobile(i)" class="w-full cursor-pointer h-full"
+                                *ngIf="item.isOpen" alt="">
+                        </div>
+                        <div *ngIf="!item.isOpen" class="h-5 w-5 m-[20%] animateClass border-4 border-white bg-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center border-t-4 border-white justify-evenly w-full">
+                <button class="text-base transition-all h-full py-2 mb-2 w-full">Connect
+                    Wallet</button>
+                <button
+                    [ngClass]="!claimStatus ? 'cursor-not-allowed border-l-4 border-white mb-2 bg-gray-400 text-gray-700': 'border-l-4 border-white mb-2 bg-white cursor-pointer text-PrimaryBlue'"
+                    class="text-base transition-all text-PrimaryBlue py-2 h-full w-full">
+                    Claim Reward🎉
+                </button>
             </div>
         </div>
-    </div> -->
+        <div class="w-[80vw] p-4 border-4 border-t-0 border-white flex flex-col items-start justify-start">
+            <div *ngIf="showData == -1" class="text-center">
+                <h1 class="font-bold text-base">Mine All blocks at once by entering random nonce to claim a Reward!</h1>
+                <h1 class="italic text-sm font-light">(Click on a mined block to learn more about it :D)</h1>
+            </div>
+            <!-- <h1 *ngIf="showData >= 0" class="italic text-lg font-light">(Showing {{this.showData}})</h1> -->
+            <div *ngIf="showData >= 0" class="w-full h-full flex flex-nowrap flex-col items-start justify-start">
+                <div class="flex items-center justify-start w-full">
+                    <img src={{projects[showData].img}} class="w-8 h-8 cursor-pointer mr-4" alt="">
+                    <a [href]="projects[showData].link">
+                        <h1 class="text-xl underline">{{projects[showData].name}}</h1>
+                    </a>
+                </div>
+                <!-- <p class="text-xs">{{projects[showData].desc}}</p> -->
+                <p class="mt-4 mb-2 text-[10px]">{{projects[showData].work}}</p>
+                <!-- <h1 class="inline-block font-semibold">Field: </h1> -->
+                <!-- <div class="inline-block" *ngFor="let item of projects[showData].fields"> -->
+                <!-- <p class="text-xs">{{projects[showData].fields}}</p> -->
+                <!-- </div> -->
+                <!-- <br> -->
+                <h1 class="inline-block mb-2 text-xs font-semibold">Tech Used/Learnt: </h1>
+                <div class="flex items-center flex-wrap justify-start">
+                    <div class="w-auto px-2 mr-2 mb-1 h-4 text-PrimaryBlue text-xs bg-white rounded-xl"
+                        *ngFor="let item of projects[showData].tech">
+                        {{item}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
