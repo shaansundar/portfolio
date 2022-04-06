@@ -8,4 +8,5 @@ function exportAddresses(Contract1, Contract2){ //Pass in interface after deploy
     };
     let addressesJSON = JSON.stringify(addresses);
     fs.writeFileSync("env/contractAddress.json", addressesJSON);
+    
 }
